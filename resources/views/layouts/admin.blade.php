@@ -24,11 +24,13 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
+    <link rel="stylesheet" href="{{ URL::asset('plugins/sweetalert2/sweetalert2.min.css')}}">
+    @toastr_css
     @stack('css')
 </head>
 
 <body id="page-top">
-
+    @include('sweetalert::alert')
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
@@ -39,7 +41,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">My App</div>
+                <div class="sidebar-brand-text mx-3">App Bakso</div>
             </a>
 
             <!-- Divider -->
@@ -77,14 +79,49 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Profile -->
+            {{-- <!-- Nav Item - Profile -->
             <li class="nav-item {{ Nav::isRoute('profile') }}">
                 <a class="nav-link" href="{{ route('profile') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>{{ __('Profile') }}</span>
                 </a>
+            </li> --}}
+
+              <!-- Nav Item - About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="{{ route('about') }}">
+                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <span>Pesanan</span>
+                </a>
             </li>
 
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('about') }}">
+                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <span>Daftar Menu</span>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('kategori.index') }}">
+                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <span>Kategori Menu</span>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('about') }}">
+                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('about') }}">
+                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <span>laporan</span>
+                </a>
+            </li>
             <!-- Nav Item - About -->
             <li class="nav-item {{ Nav::isRoute('about') }}">
                 <a class="nav-link" href="{{ route('about') }}">
@@ -341,7 +378,13 @@
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ URL::asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+     @toastr_js
+     @toastr_render
+    </script>
     @stack('scripts')
+
+   
 </body>
 
 </html>
