@@ -27,6 +27,9 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('menu/kategori', \admin\KategoriMenuController::class);
+    Route::resource('menu/daftar', \admin\DaftarMenuController::class);
+
+    Route::resource('user', \admin\UserController::class);
 });
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::with('roles')->get();
+      
+        return view('admin.users.index', compact(['users']));
     }
 
     /**
@@ -25,7 +28,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        
+        return view('admin.users.create', compact('roles'));
+    
+     
     }
 
     /**
@@ -58,7 +65,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return view('admin.users.edit', compact(['roles','user']));
     }
 
     /**

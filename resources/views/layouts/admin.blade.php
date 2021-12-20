@@ -28,6 +28,11 @@
     @toastr_css
     @stack('css')
 </head>
+<style>
+     td{
+        font-size: 15px;
+    }
+</style>
 
 <body id="page-top">
     @include('sweetalert::alert')
@@ -90,35 +95,35 @@
               <!-- Nav Item - About -->
               <li class="nav-item ">
                 <a class="nav-link" href="{{ route('about') }}">
-                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <i class="fas fa-receipt"></i>
                     <span>Pesanan</span>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link" href="{{ route('about') }}">
-                    <i class="fas fa-fw fa-hands-helping"></i>
+                <a class="nav-link" href="{{ route('daftar.index') }}">
+                    <i class="fas fa-utensils"></i>
                     <span>Daftar Menu</span>
                 </a>
             </li>
 
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('kategori.index') }}">
-                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <i class="fas fa-align-left"></i>
                     <span>Kategori Menu</span>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link" href="{{ route('about') }}">
-                    <i class="fas fa-fw fa-hands-helping"></i>
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
             </li>
 
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('about') }}">
-                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <i class="fas fa-file-alt"></i>
                     <span>laporan</span>
                 </a>
             </li>

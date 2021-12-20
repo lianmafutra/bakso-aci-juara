@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\DaftarMenu;
 use App\Http\Controllers\Controller;
+use App\KategoriMenu;
 use Illuminate\Http\Request;
 
 class DaftarMenuController extends Controller
@@ -15,7 +16,11 @@ class DaftarMenuController extends Controller
      */
     public function index()
     {
-        //
+
+        $daftarMenu = DaftarMenu::with('kategoriMenu')->get();
+      
+     
+        return view('admin.daftar_menu.index', compact(['daftarMenu']));
     }
 
     /**
@@ -25,7 +30,10 @@ class DaftarMenuController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = KategoriMenu::all();
+        
+        return view('admin.daftar_menu.create', compact('kategori'));
+    
     }
 
     /**
@@ -36,7 +44,27 @@ class DaftarMenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+
+            $gambar =  $request->file('gambar');
+            $name_uniqe =  uniqid().'-'.now()->timestamp.'.'.$gambar->getClientOriginalExtension();
+            $gambar->move('uploads', $name_uniqe);
+    
+            $harga = preg_replace( '/[^0-9]/', '', $request->harga );
+
+            $input = $request->all();
+            $input['harga'] = $harga ;
+            $input['gambar'] = $name_uniqe ;
+       
+            $daftarMenu = DaftarMenu::create($input);
+            toastr()->success('Berhasil Menambahkan Daftar Menu Baru');
+            return redirect()->route('daftar.index');
+            
+         } catch (\Throwable $th) {
+             dd($th);
+            toastr()->success('Gagal Menambahkan Daftar Menu');
+         }  
     }
 
     /**
@@ -56,9 +84,12 @@ class DaftarMenuController extends Controller
      * @param  \App\DaftarMenu  $daftarMenu
      * @return \Illuminate\Http\Response
      */
-    public function edit(DaftarMenu $daftarMenu)
+    public function edit($id)
     {
-        //
+        $daftarMenu = DaftarMenu::find($id);
+        $kategori = KategoriMenu::all();
+        return view('admin.daftar_menu.edit', compact(['daftarMenu','kategori']));
+     
     }
 
     /**
@@ -79,8 +110,14 @@ class DaftarMenuController extends Controller
      * @param  \App\DaftarMenu  $daftarMenu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DaftarMenu $daftarMenu)
+    public function destroy($id)
     {
-        //
+        
+        try {
+            DaftarMenu::destroy($id);
+            toastr()->success('Berhasil Menghapus Daftar Menu');
+        } catch (\Throwable $th) {
+            toastr()->error('Gagal Menghapus Daftar Menu');
+        }
     }
 }
