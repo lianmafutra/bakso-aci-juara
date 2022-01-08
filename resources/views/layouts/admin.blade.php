@@ -94,7 +94,7 @@
 
               <!-- Nav Item - About -->
               <li class="nav-item ">
-                <a class="nav-link" href="{{ route('about') }}">
+                <a class="nav-link" href="{{ route('pesanan.index') }}">
                     <i class="fas fa-receipt"></i>
                     <span>Pesanan</span>
                 </a>
@@ -380,6 +380,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js')}}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>

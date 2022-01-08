@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\KategoriMenuController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\PesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,9 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('menu/kategori', \admin\KategoriMenuController::class);
     Route::resource('menu/daftar', \admin\DaftarMenuController::class);
-
+    Route::put('/pesanan/status/{id}/{status}/', [PesananController::class, 'updateStatusPesanan']);
+    Route::resource('pesanan', \admin\PesananController::class);
+   
     Route::resource('user', \admin\UserController::class);
 });
 

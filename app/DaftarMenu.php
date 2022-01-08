@@ -15,4 +15,6 @@ class DaftarMenu extends Model
     {
         return $this->belongsTo(KategoriMenu::class);
     }
+
+  
 }
