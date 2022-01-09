@@ -69,7 +69,7 @@
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -82,7 +82,7 @@
                         <a class="collapse-item" href="#">Sample 2</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             {{-- <!-- Nav Item - Profile -->
             <li class="nav-item {{ Nav::isRoute('profile') }}">
@@ -93,28 +93,42 @@
             </li> --}}
 
               <!-- Nav Item - About -->
-              <li class="nav-item ">
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('pesanan.create') }}">
+                    <i class="fas fa-receipt"></i>
+                    <span>Buat Pesanan Pelanggan</span>
+                </a>
+            </li>
+              <li class="nav-item {{ Request::is('pesanan') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pesanan.index') }}">
                     <i class="fas fa-receipt"></i>
                     <span>Pesanan</span>
                 </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item {{ Request::is('menu/daftar') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('daftar.index') }}">
                     <i class="fas fa-utensils"></i>
                     <span>Daftar Menu</span>
                 </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item {{ Request::is('menu/kategori') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('kategori.index') }}">
                     <i class="fas fa-align-left"></i>
                     <span>Kategori Menu</span>
                 </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item {{ Request::is('meja') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('meja.index') }}">
+                    <i class="fas fa-tablet"></i>
+                    <span>Data Meja</span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fas fa-users"></i>
                     <span>Users</span>

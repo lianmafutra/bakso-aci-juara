@@ -51,7 +51,7 @@
 
                                 <td style="width: 130px">
                                    <a href="{{ route('user.edit', $item->id) }}"> <button class="btn btn-primary">Ubah</button></a>
-                                    <button id="btn_hapus" data-nama="{{ $item->nama }}" data-url="{{ route('user.destroy', $item->id) }}" class="btn btn-danger">Hapus</button>
+                                    <button id="btn_hapus" data-nama="{{ $item->username }}" data-url="{{ route('user.destroy', $item->id) }}" class="btn btn-danger">Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -82,12 +82,6 @@
 
       
         $('#dataTable').DataTable({
-        columnDefs: [    
-            {
-                targets: 5,
-                render: $.fn.dataTable.render.number( ',', '.', 0, 'Rp. ' )
-            },
-            ],
         });
 
 
@@ -98,7 +92,7 @@
             let url = $(this).data('url');
            
             Swal.fire({
-                title: 'Apakah anda yakin Menghapus Menu '+$(this).data('nama'),
+                title: 'Apakah anda yakin Menghapus User '+$(this).data('nama'),
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

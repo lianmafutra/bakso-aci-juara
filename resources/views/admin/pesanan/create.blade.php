@@ -4,7 +4,7 @@
 @endpush
 @section('main-content')
 
-<h1 class="h3 mb-4 text-gray-800">Buat Kategori Baru</h1>
+<h1 class="h3 mb-4 text-gray-800">Buat Pesanan Pelanggan</h1>
 
 <div class="row justify-content-center">
 

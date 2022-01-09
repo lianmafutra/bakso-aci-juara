@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\KategoriMenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\PesananController;
+use App\Http\Controllers\admin\MejaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\admin\PesananController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('menu/daftar', \admin\DaftarMenuController::class);
     Route::put('/pesanan/status/{id}/{status}/', [PesananController::class, 'updateStatusPesanan']);
     Route::resource('pesanan', \admin\PesananController::class);
+    Route::resource('meja', \admin\MejaController::class);
    
     Route::resource('user', \admin\UserController::class);
 });

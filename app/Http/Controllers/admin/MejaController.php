@@ -15,7 +15,8 @@ class MejaController extends Controller
      */
     public function index()
     {
-        //
+        $meja = Meja::get();
+        return view('admin.meja.index', compact(['meja']));
     }
 
     /**
@@ -25,7 +26,7 @@ class MejaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.meja.create');
     }
 
     /**
@@ -36,7 +37,19 @@ class MejaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            $input = $request->all();
+            $user = Meja::create($input);
+         
+            toastr()->success('Berhasil Menambahkan data Meja');
+           
+            return redirect()->route('meja.index');
+            
+         } catch (\Throwable $th) {
+             return redirect()->back();
+            toastr()->error('Gagal Menambahkan data Meja');
+        }
     }
 
     /**
@@ -58,7 +71,8 @@ class MejaController extends Controller
      */
     public function edit(Meja $meja)
     {
-        //
+
+        return view('admin.meja.edit', compact('meja'));
     }
 
     /**
@@ -70,7 +84,19 @@ class MejaController extends Controller
      */
     public function update(Request $request, Meja $meja)
     {
-        //
+        try {
+
+            $input = $request->all();
+    
+            $meja->fill($input)->save();
+
+            toastr()->success('Berhasil Merubah Data Meja');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            dd($th);
+            toastr()->error('Gagal Merubah Data Meja');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -79,8 +105,15 @@ class MejaController extends Controller
      * @param  \App\Meja  $meja
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Meja $meja)
+    public function destroy($id)
     {
-        //
+        try {
+            Meja::destroy($id);
+            toastr()->success('Berhasil Menghapus Meja');
+        } catch (\Throwable $th) {
+            toastr()->error('Gagal Menghapus Meja');
+            return redirect()->back();
+           
+        }
     }
 }

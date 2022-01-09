@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -43,7 +44,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        try {
+
+            $input = $request->all();
+            $user = User::create($input);
+         
+            toastr()->success('Berhasil Menambahkan data User');
+           
+            return redirect()->route('user.index');
+            
+         } catch (\Throwable $th) {
+            toastr()->error('Gagal Menambahkan data user');
+        }
+           
     }
 
     /**
@@ -76,9 +90,20 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(User $user, Request $request)
     {
-        //
+        try {
+
+            $input = $request->all();
+            $user->fill($input)->save();
+
+            toastr()->success('Berhasil Merubah Data User');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+           
+            toastr()->error('Gagal Merubah Data User');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -87,8 +112,15 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        try {
+            User::destroy($id);
+            toastr()->success('Berhasil Menghapus user');
+        } catch (\Throwable $th) {
+            toastr()->error('Gagal Menghapus user');
+            return redirect()->back();
+           
+        }
     }
 }

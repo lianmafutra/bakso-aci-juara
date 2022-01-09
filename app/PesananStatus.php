@@ -13,4 +13,10 @@ class PesananStatus extends Model
     public function pesanan(){
         return $this->hasMany(Pesanan::class);
     }
+
+    protected function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes["created_at"])->format("d-m-Y H:i");
+    }
+ 
 }

@@ -29,14 +29,15 @@
                     </div>
     
                     <div class="card-body">
-                        <form method="POST" action="{{ route('user.store') }}"   enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('user.store') }}"  enctype="multipart/form-data">
                             @csrf
+                            @method('POST')
                             <div class="pl-lg-4">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-control-label" >Nama Lengkap <span class="small text-danger">*</span></label>
-                                            <input class="form-control" required name="nama" placeholder="Masukkan Nama Menu">
+                                            <input class="form-control" required name="name" placeholder="Masukkan Nama Menu">
                                         </div>
                                     </div>
                                 </div>
@@ -58,10 +59,21 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
+                                            <label class="form-control-label" >Password <span class="small text-danger">*</span></label>
+                                            <input type="password" minlength="3" class="form-control" required name="password" placeholder="Masukkan Password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
                                             <label class="form-control-label" >Role<span class="small text-danger">*</span></label>
                                             <div class="form-group">
                                              
-                                                <select name="kategori_menu_id" class="form-control" id="exampleFormControlSelect1">
+                                                <select name="roles_id" class="form-control" id="roles_id">
                                                     @foreach ($roles as $item)
                                                         
                                                         <option value="{{ $item->id }}">{{ $item->jenis }}</option>

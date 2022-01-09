@@ -9,6 +9,7 @@ class Meja extends Model
 {
     use HasFactory;
     protected $table = "meja";
+    protected $guarded = [];
 
     
     public function pesanan(){

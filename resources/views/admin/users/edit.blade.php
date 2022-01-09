@@ -37,7 +37,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-control-label" >Nama Lengkap <span class="small text-danger">*</span></label>
-                                            <input class="form-control" value="{{ $user->name }}" required name="nama" placeholder="Masukkan Nama Menu">
+                                            <input class="form-control" value="{{ $user->name }}" required name="name" placeholder="Masukkan Nama Menu">
                                         </div>
                                     </div>
                                 </div>
@@ -54,6 +54,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{-- <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" >Password <span class="small text-danger">*</span></label>
+                                            <input type="password" minlength="3" class="form-control" required name="password" placeholder="Masukkan Password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
 
                             <div class="pl-lg-4">
                                 <div class="row">

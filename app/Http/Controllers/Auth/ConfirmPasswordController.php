@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
 class ConfirmPasswordController extends Controller
 {
-    /*
+    /*aa    
     |--------------------------------------------------------------------------
     | Confirm Password Controller
     |--------------------------------------------------------------------------
