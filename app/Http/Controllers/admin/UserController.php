@@ -123,4 +123,58 @@ class UserController extends Controller
            
         }
     }
+
+    public function showUpdatePassword($id){
+        $user = User::find($id);
+        return view('admin.users.password', compact('user'));
+    }
+
+    public function UpdatePassword(Request $request){
+
+        try {
+                $user = User::find($request->id);
+                $user->password = $request->password_baru;
+                $user->save();
+                toastr()->success('Berhasil Mengubah Password user');
+                return redirect()->route('user.index');
+        } catch (\Throwable $th) {
+          
+            toastr()->error('Gagal Mengupdate Password User');
+            return redirect()->back();
+        }
+       
+        return view('admin.users.password', compact('user'));
+    }
+
+
+    // public function UpdatePassword(Request $request){
+
+    //     try {
+ 
+
+    //         if (Hash::check($request->password, User::find($request->id)->password)) {
+
+              
+    //             $user = User::find($request->id);
+    //             $user->password = $request->password_baru;
+    //             $user->save();
+
+    //             toastr()->success('Berhasil Mengubah Password user');
+    //              return redirect()->route('user.index');
+    //         } else {
+    //             toastr()->error('Password Lama Tidak Cocok');
+    //             return redirect()->back();
+    //         }
+    //     } catch (\Throwable $th) {
+          
+    //         toastr()->error('Gagal Mengupdate Password User');
+    //         return redirect()->back();
+    //     }
+       
+    //     return view('admin.users.password', compact('user'));
+    // }
+
+
+
+
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\KategoriMenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\PesananController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\MejaController;
 
 /*
@@ -34,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('pesanan', \admin\PesananController::class);
     Route::resource('meja', \admin\MejaController::class);
    
+    Route::get('user/password/{id}', [UserController::class, 'showUpdatePassword'])->name('show-update-password');    
+    Route::put('user/password/ubah', [UserController::class, 'UpdatePassword'])->name('update-password');
     Route::resource('user', \admin\UserController::class);
 });
 

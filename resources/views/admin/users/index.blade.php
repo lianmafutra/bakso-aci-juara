@@ -49,9 +49,25 @@
                                 <td>{{ $item->username }}</td>  
                                 <td>{{ $item->roles->jenis }}</td>  
 
-                                <td style="width: 130px">
+                                <td style="width: 215px">
                                    <a href="{{ route('user.edit', $item->id) }}"> <button class="btn btn-primary">Ubah</button></a>
-                                    <button id="btn_hapus" data-nama="{{ $item->username }}" data-url="{{ route('user.destroy', $item->id) }}" class="btn btn-danger">Hapus</button>
+                                   <a href="{{ route('show-update-password', $item->id) }}"> <button class="btn btn-success">Ganti Password</button></a>
+                                
+
+                                    {{-- <div class="btn-group">
+                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Password
+                                        </button>
+                                        <div style="font-size: 14px" class="dropdown-menu">
+                                          <a class="dropdown-item" href="{{ route('show-update-password', $item->id) }}}">Ubah</a>
+                                          <a class="dropdown-item" href="#">Reset</a>
+                                       
+                                        
+                                        </div>
+                                      </div>
+                                   --}}
+                               
+                                   <button id="btn_hapus" data-nama="{{ $item->username }}" data-url="{{ route('user.destroy', $item->id) }}" class="btn btn-danger">Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
