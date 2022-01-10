@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\DaftarMenu;
 use App\Http\Controllers\Controller;
+use App\Meja;
 use App\Pesanan;
 use App\PesananDetail;
 use Illuminate\Http\Request;
@@ -28,7 +30,9 @@ class PesananController extends Controller
      */
     public function create()
     {
-        return view('admin.pesanan.create');
+        $meja = Meja::all();
+        $menu = DaftarMenu::all();
+        return view('admin.pesanan.create', compact(['meja','menu']));
     }
 
     /**
