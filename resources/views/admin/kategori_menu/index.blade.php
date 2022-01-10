@@ -6,6 +6,7 @@
 <link href="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 @endpush
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('main-content')
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Kategori Menu</h1>
@@ -14,7 +15,7 @@
 
     <div class="container-fluid">
 
-      
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -31,19 +32,19 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                       
+
                         <tbody>
                             @foreach ($kategoriMenu as $index => $item )
                             <tr>
                                 <td style="width: 10px">{{ $index+1 }}</td>
-                                <td>{{ $item->nama }}</td>  
-                                <td style="width: 130px">
+                                <td>{{ $item->nama }}</td>
+                                <td style="width: 10em">
                                    <a href="{{ route('kategori.edit', $item->id) }}"> <button class="btn btn-primary">Ubah</button></a>
                                     <button id="btn_hapus" data-nama="{{ $item->nama }}" data-url="{{ route('kategori.destroy', $item->id) }}" class="btn btn-danger">Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
-                          
+
                         </tbody>
                     </table>
                 </div>
@@ -68,11 +69,11 @@
         });
 
         $('#dataTable').DataTable();
-  
+
          $(document).on('click', '#btn_hapus', function (e) {
             e.preventDefault();
             let url = $(this).data('url');
-           
+
             Swal.fire({
                 title: 'Apakah anda yakin Menghapus Kategori '+$(this).data('nama'),
                 icon: 'warning',
@@ -97,6 +98,6 @@
                 })
             });
         });
-            
+
 </script>
 @endpush

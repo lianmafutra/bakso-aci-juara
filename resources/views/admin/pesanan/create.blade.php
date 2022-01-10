@@ -2,6 +2,7 @@
 @push('css')
     <link href="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endpush
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('main-content')
 
     <h1 class="h3 mb-4 text-gray-800">Buat Pesanan Pelanggan</h1>
@@ -22,7 +23,7 @@
                         </div>
 
                         <div class="card-body">
-                            <form method="POST" action="{{ route('pesanan.store') }}">
+                            <form id="form_pesanan" method="POST" action="{{ route('pesanan.store') }}">
                                 @csrf
                                 {{-- <div class="pl-lg-4">
                                 <div class="row">
@@ -34,9 +35,6 @@
                                     </div>
                                 </div>
                             </div> --}}
-
-
-
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -62,12 +60,14 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-control-label">Catatan</label>
-                                                <textarea style="min-height: 80px" class="form-control" name="deskripsi"
-                                                    placeholder="Masukkan Catatan Tambahan" value=""></textarea>
+                                                <textarea id="catatan" style="min-height: 80px" class="form-control"
+                                                    name="catatan" placeholder="Masukkan Catatan Tambahan"
+                                                    value=""></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div class="pl-lg-4">
                                     <div class="row">
@@ -75,11 +75,11 @@
                                             <div class="form-group">
 
                                                 <button class="btn btn_open_modal_menu btn-primary">
-                                                    Masukkan Menu
+                                                    + Tambah Menu
                                                 </button>
 
-                                                <button class="btn btn_simpan btn-primary">
-                                                    Simpan
+                                                <button class="btn btn_simpan btn-success">
+                                                    Buat Pesanan
                                                 </button>
                                             </div>
                                         </div>
@@ -89,9 +89,6 @@
                                 <div class="modal fade" id="modal_menu" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                      
-
-                                      
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Input Menu Pesanan</h5>
@@ -109,37 +106,41 @@
                                                                 <label class="form-control-label">Pilih Menu<span
                                                                         class="small text-danger">*</span></label>
                                                                 <div class="form-group">
-    
+
                                                                     <select name="nama" class="form-control" id="nama">
                                                                         @foreach ($menu as $item)
-    
+
                                                                             <option data-nama="{{ $item->nama }}"
+                                                                                data-gambar="{{ $item->gambar }}"
+                                                                                data-kategori_id="{{ $item->kategoriMenu->id }}"
+                                                                                data-harga="{{ $item->harga }}"
                                                                                 value="{{ $item->id }}">
                                                                                 {{ $item->nama }}</option>
-    
+
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-    
+
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="form-group">
                                                                 <label class="form-control-label">Jumlah<span
                                                                         class="small text-danger">*</span></label>
                                                                 <div class="form-group">
-    
+
                                                                     <input type="number" id="jumlah" name="jumlah" value="1"
-                                                                        class="form-control" required name="kode" value="">
+                                                                        class="form-control" required name="kode"
+                                                                        value="">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-    
+
                                                 </form>
-                                               
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -148,34 +149,37 @@
                                                     class="btn_tambahkan btn btn-primary">Tambahkan</button>
                                             </div>
                                         </div>
-                                    </form>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead style="background-color: #4e73df; color:white">
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Nama</th>
-                                                    <th>id</th>
-                                                    <th>Jumlah</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead style="background-color: #4e73df; color:white">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Gambar</th>
+                                        <th>Nama</th>
+                                        <th>id</th>
+                                        <th>Jumlah</th>
+                                        <th>Harga</th>
+                                        <th>Kategori_id</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
 
-                                            <tbody>
+                                <tbody>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
 
-                                <!-- Button -->
-                                {{-- <div class="pl-lg-4">
+                    <!-- Button -->
+                    {{-- <div class="pl-lg-4">
                                 <div class="row">
-                                    <div class="col"> 
+                                    <div class="col">
                                         <a class="btn btn-success" href="{{ route('kategori.index') }}">
                                            kembali
                                         </a>
@@ -183,17 +187,17 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            </form>
-
-                        </div>
-
-                    </div>
+                    </form>
 
                 </div>
 
             </div>
 
         </div>
+
+    </div>
+
+    </div>
 
     </div>
 
@@ -205,11 +209,35 @@
     <script src="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             var table = $('#dataTable').DataTable({
                 "bPaginate": false,
                 "bLengthChange": false,
                 "bFilter": false,
                 "bInfo": false,
+                "columnDefs": [{
+                        "width": "5%",
+                        "className": "dt-center",
+                        "targets": 0
+                    },
+                    {
+                        "targets": [3],
+                        "visible": true
+                    }, {
+                        "targets": 4,
+                        "className": "text-center",
+                    },
+                    {
+                        targets: 5,
+                        render: $.fn.dataTable.render.number(',', '.', 0, 'Rp. ')
+                    }
+                ],
                 "fnRowCallback": function(nRow, aData, iDisplayIndex) {
                     var oSettings = this.fnSettings();
                     $("td:first", nRow).html(oSettings._iDisplayStart + iDisplayIndex + 1);
@@ -217,28 +245,28 @@
                 }
             });
 
-            var counter = 0;
+
 
             $('.btn_tambahkan').on('click', function() {
+                const gambar = $('#nama option:selected').data('gambar');
                 table.row.add([
-                    '',
+                    'no',
+                    `<img src="http://127.0.0.1:8000/uploads/${gambar}" width="200" height="100">`,
                     $('#nama option:selected').data('nama'),
                     $('#nama option:selected').val(),
                     $('#jumlah').val(),
-                    ` <a data-row=${counter} class="btn btn_hapus btn-danger">Hapus</a>`,
+                    $('#nama option:selected').data('harga'),
+                    $('#nama option:selected').data('kategori_id'),
+                    ` <a class="btn btn_hapus btn-danger">Hapus</a>`,
                 ]).draw();
                 $('#modal_menu').modal('hide');
 
-
-                counter++;
             });
 
             $('.btn_open_modal_menu').on('click', function(e) {
                 e.preventDefault();
-
-          
                 $("#modal_menu").modal('show');
-                          
+
             });
 
             $('.btn_simpan').on('click', function(e) {
@@ -250,22 +278,35 @@
                     .data()
                     .toArray();
 
+
+
                 for (let index = 0; index < array_table.length; index++) {
                     data.push({
-                        id: array_table[index][2],
-                        nama: array_table[index][1],
-                        jumlah: array_table[index][3],
+                        id: array_table[index][3],
+                        nama: array_table[index][2],
+                        jumlah: parseInt(array_table[index][4]),
+                        harga: parseInt(array_table[index][5]),
+                        kategori_id: parseInt(array_table[index][6])
                     });
                 }
 
                 console.log(data);
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('pesanan.store') }}",
+                    data: {
+                        meja_id: $('#meja option:selected').val(),
+                        meja_nama: $('#meja option:selected').text(),
+                        catatan: $('#catatan').val(),
+                        menu_pesanan: data,
+                    },
+                    dataType: "json",
+                    encode: true,
+                }).done(function(data) {
+                    console.log(data);
+                });
             });
-
-
-
-
-
-
 
             $('#dataTable tbody').on('click', '.btn_hapus', function() {
                 table

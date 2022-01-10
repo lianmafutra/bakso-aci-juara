@@ -10,6 +10,7 @@ class Pesanan extends Model
     use HasFactory;
     protected $table = 'pesanan';
     protected $appends = ['total_harga'];
+    protected $guarded = [];
 
     public function meja(){
         return $this->belongsTo(Meja::class);
@@ -37,7 +38,7 @@ class Pesanan extends Model
    }
 
 
-    
+
 
 
 }

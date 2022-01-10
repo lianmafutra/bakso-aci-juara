@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
 
-      
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -30,19 +30,19 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                       
+
                         <tbody>
                             @foreach ($meja as $index => $item )
                             <tr>
                                 <td style="width: 10px">{{ $index+1 }}</td>
-                                <td>{{ $item->nama }}</td>  
-                                <td style="width: 130px">
+                                <td>{{ $item->nama }}</td>
+                                <td>
                                    <a href="{{ route('meja.edit', $item->id) }}"> <button class="btn btn-primary">Ubah</button></a>
                                     <button id="btn_hapus" data-nama="{{ $item->nama }}" data-url="{{ route('meja.destroy', $item->id) }}" class="btn btn-danger">Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
-                          
+
                         </tbody>
                     </table>
                 </div>
@@ -66,12 +66,17 @@
             }
         });
 
-        $('#dataTable').DataTable();
-  
+        $('#dataTable').DataTable({
+            columnDefs: [
+            { width: '20%', targets: 2 }
+        ],
+        fixedColumns: true
+        });
+
          $(document).on('click', '#btn_hapus', function (e) {
             e.preventDefault();
             let url = $(this).data('url');
-           
+
             Swal.fire({
                 title: 'Apakah anda yakin Menghapus Kategori '+$(this).data('nama'),
                 icon: 'warning',
@@ -96,6 +101,6 @@
                 })
             });
         });
-            
+
 </script>
 @endpush

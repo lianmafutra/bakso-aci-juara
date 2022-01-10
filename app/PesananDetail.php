@@ -9,7 +9,8 @@ class PesananDetail extends Model
 {
     use HasFactory;
     protected $table = 'pesanan_detail';
-    
+    protected $guarded = [];
+
 
     public function daftar_menu()
     {
@@ -21,6 +22,6 @@ class PesananDetail extends Model
     {
         return \Carbon\Carbon::parse($this->attributes["created_at"])->format("d-m-Y H:i");
     }
- 
-   
+
+
 }

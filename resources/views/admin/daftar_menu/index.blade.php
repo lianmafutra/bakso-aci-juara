@@ -7,7 +7,7 @@
 
 @endpush
 <style>
-   
+
 </style>
 @section('main-content')
 <!-- Page Heading -->
@@ -17,7 +17,7 @@
 
     <div class="container-fluid">
 
-      
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -38,28 +38,28 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                       
+
                         <tbody>
                             @foreach ($daftarMenu as $index => $item )
                             <tr>
                                 <td style="width: 10px">{{ $index+1 }}</td>
                                 <td style="width: 200px">
                                     <img width="200px" height="150px" src="{{ URL::asset('/uploads/'.$item->gambar) }}">
-                                  
-                                
-                                </td>  
-                                <td>{{ $item->nama }}</td>  
-                                <td>{{ $item->kategoriMenu->nama }}</td>  
-                              
-                                <td>{{ $item->deskripsi }}</td>  
-                                <td>{{ $item->harga }}</td>  
-                                <td style="width: 130px">
+
+
+                                </td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->kategoriMenu->nama }}</td>
+
+                                <td>{{ $item->deskripsi }}</td>
+                                <td>{{ $item->harga }}</td>
+                                <td style="width: 10em">
                                    <a href="{{ route('daftar.edit', $item->id) }}"> <button class="btn btn-primary">Ubah</button></a>
                                     <button id="btn_hapus" data-nama="{{ $item->nama }}" data-url="{{ route('daftar.destroy', $item->id) }}" class="btn btn-danger">Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
-                          
+
                         </tbody>
                     </table>
                 </div>
@@ -84,9 +84,9 @@
         });
 
 
-      
+
         $('#dataTable').DataTable({
-        columnDefs: [    
+        columnDefs: [
             {
                 targets: 5,
                 render: $.fn.dataTable.render.number( ',', '.', 0, 'Rp. ' )
@@ -96,11 +96,11 @@
 
 
 
-        
+
          $(document).on('click', '#btn_hapus', function (e) {
             e.preventDefault();
             let url = $(this).data('url');
-           
+
             Swal.fire({
                 title: 'Apakah anda yakin Menghapus Menu '+$(this).data('nama'),
                 icon: 'warning',
@@ -125,6 +125,6 @@
                 })
             });
         });
-            
+
 </script>
 @endpush

@@ -10,7 +10,7 @@
     td {
         font-size: 15px;
     }
-    
+
 </style>
 @section('main-content')
 <!-- Page Heading -->
@@ -20,7 +20,7 @@
 
     <div class="container-fluid">
 
-      
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -39,20 +39,20 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                       
+
                         <tbody>
                             @foreach ($users as $index => $item )
                             <tr>
                                 <td style="width: 10px">{{ $index+1 }}</td>
-                            
-                                <td>{{ $item->name }}</td>  
-                                <td>{{ $item->username }}</td>  
-                                <td>{{ $item->roles->jenis }}</td>  
 
-                                <td style="width: 215px">
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->username }}</td>
+                                <td>{{ $item->roles->jenis }}</td>
+
+                                <td style="width: 19em">
                                    <a href="{{ route('user.edit', $item->id) }}"> <button class="btn btn-primary">Ubah</button></a>
                                    <a href="{{ route('show-update-password', $item->id) }}"> <button class="btn btn-success">Ganti Password</button></a>
-                                
+
 
                                     {{-- <div class="btn-group">
                                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,17 +61,17 @@
                                         <div style="font-size: 14px" class="dropdown-menu">
                                           <a class="dropdown-item" href="{{ route('show-update-password', $item->id) }}}">Ubah</a>
                                           <a class="dropdown-item" href="#">Reset</a>
-                                       
-                                        
+
+
                                         </div>
                                       </div>
                                    --}}
-                               
+
                                    <button id="btn_hapus" data-nama="{{ $item->username }}" data-url="{{ route('user.destroy', $item->id) }}" class="btn btn-danger">Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
-                          
+
                         </tbody>
                     </table>
                 </div>
@@ -96,17 +96,17 @@
         });
 
 
-      
+
         $('#dataTable').DataTable({
         });
 
 
 
-        
+
          $(document).on('click', '#btn_hapus', function (e) {
             e.preventDefault();
             let url = $(this).data('url');
-           
+
             Swal.fire({
                 title: 'Apakah anda yakin Menghapus User '+$(this).data('nama'),
                 icon: 'warning',
@@ -131,6 +131,6 @@
                 })
             });
         });
-            
+
 </script>
 @endpush
