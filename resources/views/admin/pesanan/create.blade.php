@@ -227,8 +227,8 @@
                         "targets": 0
                     },
                     {
-                        "targets": [3],
-                        "visible": true
+                        "targets": [3,6],
+                        "visible": false
                     }, {
                         "targets": 4,
                         "className": "text-center",

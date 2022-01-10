@@ -14,7 +14,7 @@
 
     <div class="container-fluid">
 
-      
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -33,18 +33,19 @@
                                 {{-- <th>Kategori</th> --}}
                                 <th>Tanggal Pesan</th>
                                 <th>Status</th>
+                                <th>Catatan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                       
+
                         <tbody>
                             @foreach ($pesanan as $index => $item )
                             <tr>
                                 <td style="width: 10px">{{ $index+1 }}</td>
-                                <td>{{ $item->kode }}</td>  
-                                <td>{{ $item->meja->nama }}</td>  
+                                <td>{{ $item->kode }}</td>
+                                <td>{{ $item->meja->nama }}</td>
                                 {{-- <td>{{ $item->nama }}</td>   --}}
-                                {{-- <td>{{ $item->kategori }}</td>  
+                                {{-- <td>{{ $item->kategori }}</td>
                                 <td>{{ $item->catatan }}</td>   --}}
                                 <th>{{ $item->waktu }}</th>
 
@@ -58,8 +59,9 @@
                                     @elseif ($item->status == "dibatalkan")
                                         <span class="badge badge-danger">{{ $item->status }}</span>
                                     @endif
-                                   
-                                </td>  
+
+                                </td>
+                                <td>{{ $item->catatan }}</td>
                                 <td style="width: 70px">
 
                                     <div class="btn-group">
@@ -68,17 +70,17 @@
                                         </button>
                                         <div style="font-size: 14px" class="dropdown-menu">
                                           <a class="dropdown-item" href="{{ route('pesanan.show', $item->id) }}">Detail</a>
-                     
+
                                           <a class="dropdown-item" href="#">Cetak Struk</a>
                                           <div class="dropdown-divider"></div>
                                           <a class="dropdown-item" href="#">Batalkan Pesanan</a>
                                         </div>
                                       </div>
-                                  
+
                                 </td>
                             </tr>
                             @endforeach
-                          
+
                         </tbody>
                     </table>
                 </div>
@@ -94,7 +96,7 @@
 
 <script src="{{ URL::asset('plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ URL::asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script> 
+<script src="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
 <script>
     $(document).ready(function () {
@@ -105,11 +107,11 @@
         });
 
         $('#dataTable').DataTable();
-  
+
          $(document).on('click', '#btn_hapus', function (e) {
             e.preventDefault();
             let url = $(this).data('url');
-           
+
             Swal.fire({
                 title: 'Apakah anda yakin Menghapus Kategori '+$(this).data('nama'),
                 icon: 'warning',
@@ -134,6 +136,6 @@
                 })
             });
         });
-            
+
 </script>
 @endpush
