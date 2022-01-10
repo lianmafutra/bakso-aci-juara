@@ -14,9 +14,9 @@
 
 
             <div class="col-lg-8 order-lg-1">
-    
+
                 <div class="card shadow mb-4">
-    
+
                     <div class="card-header py-3">
                         <a class="btn btn-success" href="{{ route('pesanan.index') }}">
                             kembali
@@ -29,32 +29,32 @@
                                Ubah Status
                             </button>
                             <div style="font-size: 14px" class="dropdown-menu">
-                                <form action="{{ url('pesanan/status/1/menunggu') }}" method="POST">
-                                    @csrf 
-                                    @method('PUT') 
+                                <form action="{{ url('pesanan/status/'.$pesanan->id.'/menunggu') }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
                                     <button type="submit" class="dropdown-item">menunggu</button>
                                 </form>
-                            
-                                <form action="{{ url('pesanan/status/1/diproses') }}" method="POST">
-                                    @csrf 
-                                    @method('PUT') 
+
+                                <form action="{{ url('pesanan/status/'.$pesanan->id.'/diproses') }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
                                     <button type="submit" class="dropdown-item">diproses</button>
                                 </form>
-                                <form action="{{ url('pesanan/status/1/selesai') }}" method="POST">
-                                    @csrf 
-                                    @method('PUT') 
+                                <form action="{{ url('pesanan/status/'.$pesanan->id.'/selesai') }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
                                     <button type="submit" class="dropdown-item">selesai</button>
                                 </form>
                               <div class="dropdown-divider"></div>
-                              <form action="{{ url('pesanan/status/1/dibatalkan') }}" method="POST">
-                                @csrf 
-                                @method('PUT') 
+                              <form action="{{ url('pesanan/status/'.$pesanan->id.'/dibatalkan') }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <button type="submit" class="dropdown-item">dibatalkan</button>
                             </form>
                             </div>
                           </div>
                     </div>
-    
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('kategori.store') }}" >
                             @csrf
@@ -89,28 +89,28 @@
                                                                     <th>Harga</th>
                                                                 </tr>
                                                             </thead>
-                                                       
+
                                                         <tbody>
                                                             @foreach ($pesanan->pesanan_detail as $index => $item )
                                                             <tr>
                                                                 <td style="width: 10px">{{ $index+1 }}</td>
                                                                 <td style="width: 200px">
                                                                     <img width="200px" height="150px" src="{{ URL::asset('/uploads/'.$item->daftar_menu->gambar) }}">
-                                                                </td>  
+                                                                </td>
                                                                 <td>{{ $item->nama }}</td>
                                                                 <td>X {{ $item->jumlah }}</td>
                                                                 <td data-harga="{{ $index }}"> {{ $item->harga }}</td>
-                                                             
+
                                                             </tr>
                                                             @endforeach
-                                                          
+
                                                         </tbody>
                                                     </table>
-                                           
-                                                    
+
+
                                                     </div>
                                                 </div>
-                                          
+
                                                 </div>
                                         </div>
                                         </div>
@@ -118,31 +118,31 @@
                                 </div>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col"> 
-                                           
-                                          
+                                        <div class="col">
+
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-    
+
                             <!-- Button -->
-                           
+
                         </form>
-    
+
                     </div>
-    
+
             </div>
             <div class="col-lg-4 order-lg-1">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                       <h3>Total Harga : </h3> 
+                       <h3>Total Harga : </h3>
                        <strong><h1 id="total_harga"></h1></strong>
                        <br>
                     </div>
                 </div>
             </div>
-    
+
         </div>
 
     </div>
@@ -153,7 +153,7 @@
 @push('scripts')
 <script src="{{ URL::asset('plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ URL::asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script> 
+<script src="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 <script>
 
 
@@ -180,7 +180,7 @@ $('#dataTable').DataTable({
     "bLengthChange": false,
     "bFilter": false,
     "bInfo": false,
-        columnDefs: [    
+        columnDefs: [
             {
                 targets:4,
                 render: $.fn.dataTable.render.number( ',', '.', 0, 'Rp. ' )

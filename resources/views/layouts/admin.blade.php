@@ -94,13 +94,13 @@
 
               <!-- Nav Item - About -->
 
-              <li class="nav-item">
+              <li class="nav-item {{ Request::is('pesanan/create') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pesanan.create') }}">
                     <i class="fas fa-receipt"></i>
                     <span>Buat Pesanan Pelanggan</span>
                 </a>
             </li>
-              <li class="nav-item {{ Request::is('pesanan') ? 'active' : '' }}">
+              <li class="nav-item {{ Request::is('pesanan/') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pesanan.index') }}">
                     <i class="fas fa-receipt"></i>
                     <span>Pesanan</span>
@@ -268,12 +268,12 @@
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                            {{-- <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
-                            </a>
+                            </a> --}}
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
@@ -315,14 +315,14 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Profile') }}
                                 </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                {{-- <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Settings') }}
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                </a> --}}
+                                {{-- <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Activity Log') }}
-                                </a>
+                                </a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

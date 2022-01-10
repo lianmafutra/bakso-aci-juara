@@ -33,6 +33,7 @@ class PesananController extends Controller
      */
     public function create()
     {
+
         $meja = Meja::all();
         $menu = DaftarMenu::with('kategoriMenu')->get();
 
@@ -58,22 +59,20 @@ class PesananController extends Controller
                 $total_harga += $key["harga"] * $key["jumlah"];
             }
 
-            // $pesanan = new Pesanan;
+            $kode_pesanan = 0;
+            $kode_pesanan = Pesanan::latest();
 
-            // $pesanan->users_id    = Auth::user()->id;
-            // $pesanan->kode        = '';
-            // $pesanan->meja_id     = $request->meja_id;
-            // $pesanan->no_meja     = $request->meja_nama;
-            // $pesanan->waktu       = Carbon::now();
-            // $pesanan->pelayan     = Auth::user()->name;
-            // $pesanan->catatan     = $request->catatan;
-            // $pesanan->total_harga = $total_harga;
+            if($kode_pesanan->get()->isEmpty()){
+                $kode_pesanan = 1;
+            }else{
+                $kode_pesanan = ($kode_pesanan->first()->id) +1;
+            }
 
-            // $pesanan->save();
+
 
             $pesanan = Pesanan::create([
                 'users_id'    => Auth::user()->id,
-                'kode'        => '',
+                'kode'        => 'P-'.$kode_pesanan,
                 'meja_id'     => $request->meja_id,
                 'no_meja'     => $request->meja_nama,
                 'waktu'       => Carbon::now(),
@@ -82,11 +81,7 @@ class PesananController extends Controller
                 'total_harga' => $total_harga
             ]);
 
-            // $pesanan->save();
-
-
-
-            // return $pesanan;
+            $pesanan->save();
 
             foreach ($request->menu_pesanan as $key => $value) {
                 PesananDetail::create([
@@ -99,6 +94,8 @@ class PesananController extends Controller
                 ]);
             }
             DB::commit();
+            // toastr()->success('Berhasil Merubah Status Pesanan');
+            return redirect()->route('pesanan.index');
         } catch (\Exception $e) {
             return $e;
             DB::rollback();
