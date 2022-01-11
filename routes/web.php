@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('menu/kategori', \admin\KategoriMenuController::class);
     Route::resource('menu/daftar', \admin\DaftarMenuController::class);
     Route::put('/pesanan/status/{id}/{status}/', [PesananController::class, 'updateStatusPesanan']);
+    Route::get('/pesanan/{id}/cetak', [PesananController::class, 'cetakStrukPesanan'])->name('pesanan.struk');
     Route::resource('pesanan', \admin\PesananController::class);
     Route::resource('meja', \admin\MejaController::class);
 

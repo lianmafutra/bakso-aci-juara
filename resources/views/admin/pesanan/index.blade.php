@@ -71,7 +71,7 @@
                                         <div style="font-size: 14px" class="dropdown-menu">
                                           <a class="dropdown-item" href="{{ route('pesanan.show', $item->id) }}">Detail</a>
 
-                                          <a class="dropdown-item" href="#">Cetak Struk</a>
+                                          <a target="_blank" class="dropdown-item" href="{{ route('pesanan.struk', $item->id) }}">Cetak Struk</a>
                                           <div class="dropdown-divider"></div>
                                           <a class="dropdown-item" href="#">Batalkan Pesanan</a>
                                         </div>

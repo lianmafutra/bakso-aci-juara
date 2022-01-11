@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PesananController extends Controller
 {
@@ -163,5 +164,15 @@ class PesananController extends Controller
     public function destroy(Pesanan $pesanan)
     {
         //
+    }
+
+    public function cetakStrukPesanan($id){
+        $pesanan = Pesanan::find($id);
+
+        $data = PDF::loadview('admin.pesanan.struk', ['pesanan' => $pesanan]);
+    	// return $data->stream('struk_pesanan.pdf');
+
+       return $data->stream("struk_pesanan_".$id.".pdf", array("Attachment" => false));
+
     }
 }
