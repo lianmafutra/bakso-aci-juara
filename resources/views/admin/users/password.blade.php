@@ -21,13 +21,13 @@
 
 
             <div class="col-lg-8 order-lg-1">
-    
+
                 <div class="card shadow mb-4">
-    
+
                     <div class="card-header py-3">
                         {{-- <h6 class="m-0 font-weight-bold text-primary">My Account</h6> --}}
                     </div>
-    
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('update-password', $user->id) }}"   enctype="multipart/form-data">
                             @csrf
@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
 
                             <div class="pl-lg-4">
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
 
-                  
+
                             {{-- <div class="pl-lg-4">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -73,17 +73,17 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-control-label" >Password Baru<span class="small text-danger">*</span></label>
-                                            <input type="password" minlength="3" class="form-control"  name="password_baru" placeholder="Masukkan Password">
+                                            <input required type="password" minlength="3" class="form-control"  name="password_baru" placeholder="Masukkan Password">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-    
+
                             <!-- Button -->
                             <div class="pl-lg-4">
                                 <div class="row">
-                                    <div class="col"> 
+                                    <div class="col">
                                         <a class="btn btn-success" href="{{ route('user.index') }}">
                                            kembali
                                         </a>
@@ -92,13 +92,13 @@
                                 </div>
                             </div>
                         </form>
-    
+
                     </div>
-    
+
                 </div>
-    
+
             </div>
-    
+
         </div>
 
     </div>
