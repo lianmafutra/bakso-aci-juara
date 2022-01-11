@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @push('css')
     <link href="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.4/sweetalert2.min.js"
+        integrity="sha512-GDiDlK2vvO6nYcNorLUit0DSRvcfd7Vc0VRg7e3PuZcsTwQrJQKp5hf8bCaad+BNoBq7YMH6QwWLPQO3Xln0og=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endpush
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('main-content')
@@ -207,6 +210,9 @@
 
     <script src="{{ URL::asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.4/sweetalert2.all.min.js"
+        integrity="sha512-aE/WWAoHkQZnPvRxpkvO3+nYiosvBZTv9AJB/quwn6ETQjQOSpNpaiIhmzbMl4RxVQ1QAGQgbZg2dLLVwf4Dug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
 
@@ -227,7 +233,7 @@
                         "targets": 0
                     },
                     {
-                        "targets": [3,6],
+                        "targets": [3, 6],
                         "visible": false
                     }, {
                         "targets": 4,
@@ -278,10 +284,10 @@
 
                 for (let index = 0; index < array_table.length; index++) {
                     data.push({
-                        id         : array_table[index][3],
-                        nama       : array_table[index][2],
-                        jumlah     : parseInt(array_table[index][4]),
-                        harga      : parseInt(array_table[index][5]),
+                        id: array_table[index][3],
+                        nama: array_table[index][2],
+                        jumlah: parseInt(array_table[index][4]),
+                        harga: parseInt(array_table[index][5]),
                         kategori_id: parseInt(array_table[index][6])
                     });
                 }
@@ -290,15 +296,23 @@
                     type: "POST",
                     url: "{{ route('pesanan.store') }}",
                     data: {
-                        meja_id     : $('#meja option:selected').val(),
-                        meja_nama   : $('#meja option:selected').text(),
-                        catatan     : $('#catatan').val(),
+                        meja_id: $('#meja option:selected').val(),
+                        meja_nama: $('#meja option:selected').text(),
+                        catatan: $('#catatan').val(),
                         menu_pesanan: data,
                     },
-                    dataType: "json",
-                    encode: true,
+                    success: function() {
+                        Swal.fire(
+                            'Sukses',
+                            'Pesanan Berhasil Dibuat',
+                            'success'
+                        ).then(function() {
+                           window.location.href = "{{ url('/pesanan') }}";
+                        });
+
+                    }
                 }).done(function(data) {
-                    console.log(data);
+
                 });
             });
 

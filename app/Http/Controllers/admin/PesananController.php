@@ -21,7 +21,7 @@ class PesananController extends Controller
      */
     public function index()
     {
-        $pesanan = Pesanan::with('meja')->get();
+        $pesanan = Pesanan::with('meja')->latest()->get();
 
         return view('admin.pesanan.index', compact(['pesanan']));
     }

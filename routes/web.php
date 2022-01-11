@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\PesananController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\MejaController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +20,19 @@ use App\Http\Controllers\admin\MejaController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect()->route('login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/profile', 'ProfileController@index')->name('profile');
+    Route::put('/profile', 'ProfileController@update')->name('profile.update');
+
     Route::resource('menu/kategori', \admin\KategoriMenuController::class);
     Route::resource('menu/daftar', \admin\DaftarMenuController::class);
     Route::put('/pesanan/status/{id}/{status}/', [PesananController::class, 'updateStatusPesanan']);
