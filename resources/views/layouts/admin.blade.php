@@ -46,7 +46,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">App Bakso</div>
+                <div class="sidebar-brand-text mx-3">Bakso ACI Juara</div>
             </a>
 
             <!-- Divider -->
@@ -135,19 +135,19 @@
                 </a>
             </li>
 
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ route('about') }}">
+            <li class="nav-item {{ Request::is('laporan') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('laporan.index') }}">
                     <i class="fas fa-file-alt"></i>
                     <span>laporan</span>
                 </a>
             </li>
-            <!-- Nav Item - About -->
+            {{-- <!-- Nav Item - About -->
             <li class="nav-item {{ Nav::isRoute('about') }}">
                 <a class="nav-link" href="{{ route('about') }}">
                     <i class="fas fa-fw fa-hands-helping"></i>
                     <span>{{ __('About') }}</span>
                 </a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

@@ -78,7 +78,7 @@ class PesananController extends Controller
                 'waktu'       => Carbon::now(),
                 'pelayan'     => Auth::user()->name,
                 'catatan'     => $request->catatan,
-                'total_harga' => $total_harga
+                'total' => $total_harga
             ]);
 
             $pesanan->save();

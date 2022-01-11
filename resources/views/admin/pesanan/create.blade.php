@@ -266,39 +266,33 @@
             $('.btn_open_modal_menu').on('click', function(e) {
                 e.preventDefault();
                 $("#modal_menu").modal('show');
-
             });
 
             $('.btn_simpan').on('click', function(e) {
                 e.preventDefault();
-
                 const data = [];
                 var array_table = table
                     .rows()
                     .data()
                     .toArray();
 
-
-
                 for (let index = 0; index < array_table.length; index++) {
                     data.push({
-                        id: array_table[index][3],
-                        nama: array_table[index][2],
-                        jumlah: parseInt(array_table[index][4]),
-                        harga: parseInt(array_table[index][5]),
+                        id         : array_table[index][3],
+                        nama       : array_table[index][2],
+                        jumlah     : parseInt(array_table[index][4]),
+                        harga      : parseInt(array_table[index][5]),
                         kategori_id: parseInt(array_table[index][6])
                     });
                 }
-
                 console.log(data);
-
                 $.ajax({
                     type: "POST",
                     url: "{{ route('pesanan.store') }}",
                     data: {
-                        meja_id: $('#meja option:selected').val(),
-                        meja_nama: $('#meja option:selected').text(),
-                        catatan: $('#catatan').val(),
+                        meja_id     : $('#meja option:selected').val(),
+                        meja_nama   : $('#meja option:selected').text(),
+                        catatan     : $('#catatan').val(),
                         menu_pesanan: data,
                     },
                     dataType: "json",

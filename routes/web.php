@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\KategoriMenuController;
+use App\Http\Controllers\admin\LaporanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\PesananController;
 use App\Http\Controllers\admin\UserController;
@@ -34,10 +35,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/pesanan/status/{id}/{status}/', [PesananController::class, 'updateStatusPesanan']);
     Route::resource('pesanan', \admin\PesananController::class);
     Route::resource('meja', \admin\MejaController::class);
-   
-    Route::get('user/password/{id}', [UserController::class, 'showUpdatePassword'])->name('show-update-password');    
+
+    Route::get('user/password/{id}', [UserController::class, 'showUpdatePassword'])->name('show-update-password');
     Route::put('user/password/ubah', [UserController::class, 'UpdatePassword'])->name('update-password');
     Route::resource('user', \admin\UserController::class);
+
+    Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::post('laporan/filter', [LaporanController::class, 'laporanFilter'])->name('laporan.filter');
+    Route::get('laporan/cetak', [LaporanController::class, 'laporanCetak'])->name('laporan.cetak');
 });
 
 
