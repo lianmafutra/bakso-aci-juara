@@ -292,6 +292,15 @@
                     });
                 }
                 console.log(data);
+
+                if(data == 0){
+                    Swal.fire(
+                            'Gagal',
+                            'Pesanan Belum diisi',
+                            'warning'
+                        );
+                    return false;
+                }
                 $.ajax({
                     type: "POST",
                     url: "{{ route('pesanan.store') }}",
@@ -307,13 +316,17 @@
                             'Pesanan Berhasil Dibuat',
                             'success'
                         ).then(function() {
-                           window.location.href = "{{ url('/pesanan') }}";
+                            window.location.href = "{{ url('/pesanan') }}";
                         });
-
+                    },
+                    error: function() {
+                        Swal.fire(
+                            'Gagal',
+                            'Pesanan Gagal Dibuat',
+                            'error'
+                        );
                     }
-                }).done(function(data) {
-
-                });
+                })
             });
 
             $('#dataTable tbody').on('click', '.btn_hapus', function() {

@@ -97,8 +97,9 @@ class PesananController extends Controller
             // toastr()->success('Berhasil Merubah Status Pesanan');
             return redirect()->route('pesanan.index');
         } catch (\Exception $e) {
-            return $e;
             DB::rollback();
+            return response('error terjadi kesalahan', 400);
+
         }
 
 
