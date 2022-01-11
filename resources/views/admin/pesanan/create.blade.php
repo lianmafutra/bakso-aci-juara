@@ -28,16 +28,6 @@
                         <div class="card-body">
                             <form id="form_pesanan" method="POST" action="{{ route('pesanan.store') }}">
                                 @csrf
-                                {{-- <div class="pl-lg-4">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label class="form-control-label" >Kode Pesanan<span class="small text-danger">*</span></label>
-                                            <input disabled  class="form-control" required name="kode" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -88,7 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </form>
                                 <div class="modal fade" id="modal_menu" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -152,7 +142,7 @@
                                                     class="btn_tambahkan btn btn-primary">Tambahkan</button>
                                             </div>
                                         </div>
-                            </form>
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -272,6 +262,7 @@
             $('.btn_open_modal_menu').on('click', function(e) {
                 e.preventDefault();
                 $("#modal_menu").modal('show');
+                $("#jumlah").val(1);
             });
 
             $('.btn_simpan').on('click', function(e) {
