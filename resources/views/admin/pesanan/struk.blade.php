@@ -10,35 +10,51 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 
-<body onload="window.print();>
+<body  onload="window.print();>
     <div class="container mt-4">
-        <h3 class="alert alert-success">{{ $pesanan->kode }}</h3>
-        <table class="table table-bordered">
+        {{-- <h3 class="alert alert-success">{{ $pesanan->kode }}</h3> --}}
+        <h4 class="">* Bakso Aci Juara Jambi</h4>
+        <h5 class="">* 082210310864</h5>
+        <span>==================================</span>
+        <h6>Kode pesanan : {{ $pesanan->kode }}</h6>
+        <h6>Tanggal : {{ Carbon\Carbon::parse($pesanan->waktu)->format('d/m/Y') }}</h6>
+        <table border="1" style="width: 100%; margin-top: 20px">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Kode</th>
+                    <th>Item</th>
+                    <th>Jumlah</th>
+                    <th>Harga</th>
                     <th>Total Harga</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- {{ dd($pesanan) }} --}}
 
-                    <tr>
-                        <td>
-                            {{ $pesanan->kode }}
-                        </td>
-                        <td>
-                            {{ $pesanan->no_meja }}
-                        </td>
-                        <td>
-                            {{ $pesanan->total }}
-                        </td>
-                    </tr>
+                @foreach ($pesanan->pesanan_detail as $item)
+                <tr>
+                    <td>
+                        {{ $item->nama }}
+                    </td>
+                    <td>
+                        {{ $item->jumlah }}
+                    </td>
+                    <td>
+                        {{ "Rp " . number_format($item->harga,0,',','.')  }}
+                    </td>
+                    <td>
+                        {{ "Rp " . number_format(($item->harga)*$item->jumlah,0,',','.')  }}
+                    </td>
+
+                </tr>
+
+                @endforeach
 
             </tbody>
+
+
         </table>
-        <h1>tes</h1>
+
+        <h5  style="text-align: right; margin-top: 20px">Total Bayar :  {{ "Rp " . number_format($pesanan->total, 0,',','.')  }}</h5>
+
     </div>
 <script>
      this.print();

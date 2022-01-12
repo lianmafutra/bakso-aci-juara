@@ -167,7 +167,7 @@ class PesananController extends Controller
     }
 
     public function cetakStrukPesanan($id){
-        $pesanan = Pesanan::find($id);
+        $pesanan = Pesanan::with('pesanan_detail')->find($id);
 
         $data = PDF::loadview('admin.pesanan.struk', ['pesanan' => $pesanan]);
     	// return $data->stream('struk_pesanan.pdf');

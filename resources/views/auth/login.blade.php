@@ -7,7 +7,9 @@
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <img src="{{ asset('uploads/logo_bakso.png') }}" width="100%" height="100%">
+                        </div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
@@ -34,7 +36,7 @@
                                     <div class="form-group">
                                         <input style="font-size: 14px" type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Password') }}" required>
                                     </div>
-{{-- 
+{{--
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -50,13 +52,13 @@
 
                                     <hr>
 
-                                   
-                                  
-                                   
+
+
+
                                 </form>
 
                                 <hr>
-{{-- 
+{{--
                                 @if (Route::has('password.request'))
                                     <div class="text-center">
                                         <a class="small" href="{{ route('password.request') }}">
